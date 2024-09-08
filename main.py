@@ -1,4 +1,4 @@
 
 def test_func():
-    b = "YEAH!! this is indeed very COOL!"
+    a = "Nah, it's not cool bruh"
     return "cool funciton"
