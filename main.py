@@ -1,6 +1,9 @@
 
 def test_func():
     "docscrting of test func"
+    
+    a = 1
+    
     b = "YEAH!! this is indeed very COOL!"
     d = "NAH this is extra not COOL!" + "I added another line to rewrite history"
 
