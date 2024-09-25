@@ -12,3 +12,8 @@ def test_func():
 
     return f"cool funciton {d}{b}{e}"
 
+
+def func_b():
+    # some implementatio here
+    b = 0
+    return b 
