@@ -1,0 +1,59 @@
+
+
+[tool.poetry]
+name = "test"
+version = "0.1.0"
+description = ""
+authors = ["AJ", "test@test.com"]
+readme = "README.md"
+license = "MIT" 
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ruff = "^0.6.7"
+pre-commit = "^3.8.0"
+faker = "^30.0.0"
+school = {version = "0.0.0", source = "testpypi"}
+
+[tool.poetry.group.dev.dependencies]
+pydoclint = "^0.5.8"
+build = "^1.2.2"
+twine = "^5.1.1"
+rust-just = "^1.36.0"
+
+
+
+
+[[tool.poetry.source]]
+name = "testpypi"
+url = "https://test.pypi.org/simple/"
+priority = "explicit"
+
+[tool.pydoclint]
+style = "google"
+
+
+[tool.ruff.lint]
+select = ["ALL"]
+fixable = ["ALL"]
+ignore = [
+    "D107", # Checks for missing docstring in `__init__`
+    "D407", # Checks for section headers in docstrings that are not followed by underlines.
+    "D203", # 1 blank line required before class docstring
+    "D212", # Multi-line docstring summary should start at the first line
+    "S311", # Standard pseudo-random generators are not suitable for cryptographic purposes
+]
+
+
+[tool.ruff.lint.mccabe]
+# Check mccabe. 
+# Each additional decision point (e.g., if, elif, else, for, while, try, except, etc.) 
+# increases the complexity score by 1.
+# Flag errors (`C901`) whenever the complexity level exceeds 8.
+max-complexity = 8
+
+
+[build-system]
+requires = ["poetry-core", "setuptools>=61", "wheel"]
+build-backend = "poetry.core.masonry.api"
+

@@ -1,17 +1,18 @@
+"""Game logic."""
 
-def test_func():
-    "docscrting of test func"
-    
-    a = 1
-    
-    b = "YEAH!! this is indeed very COOL!"
-    d = "NAH this is extra not COOL!" + "I added another line to rewrite history"
+from faker import Faker
+from school.component import Class, USStudent
 
-    e = "I'm happy with what i have"
+fake = Faker()
 
-    return f"cool funciton {d}{b}{e}"
-
-
-# Try this
-def func_b():
-    return {"b": 0}
+if __name__ == "__main__":
+    students = [
+        USStudent(
+            std_id=i,
+            first_name=fake.first_name(),
+            last_name=fake.last_name(),
+        )
+        for i in range(1, 10)
+    ]
+    american_class = Class(students=students)
+    american_class.roll_call()

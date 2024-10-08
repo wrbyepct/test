@@ -1,0 +1,78 @@
+#!/bin/bash
+
+set -e
+
+release:prod() {
+    release:test
+    publish:prod
+}
+
+
+publish:prod() {
+    load-dotenv
+
+    DIRNAME=${1:-.}
+    twine upload ${DIRNAME}/dist/* \
+        -r pypi \
+        --username=__token__ \
+        --password="${PROD_PYPI_TOKEN}"
+
+}
+
+
+release:test() {
+    DIRNAME=test_package
+    lint
+    clean ${DIRNAME}
+    build ${DIRNAME}
+    publish:test ${DIRNAME}
+}
+
+
+lint() {
+    git add .; poetry run pre-commit run --all-files
+}
+
+
+clean() {
+    DIRNAME=${1:-.}
+    rm -rf ${DIRNAME}/dist ${DIRNAME}/*.egg-info
+ 
+}
+
+
+build() {
+    DIRNAME=${1:-.}
+    python -m build ${DIRNAME}
+}
+
+
+publish:test() {
+    load-dotenv
+
+    DIRNAME=${1:-.}
+    twine upload ${DIRNAME}/dist/* \
+        -r testpypi \
+        --username=__token__ \
+        --password="${TEST_PYPI_TOKEN}"
+
+}
+
+
+load-dotenv() {
+    while read -r line; do
+        export "$line"
+    done < <(grep -v "^#" ./.env)
+
+}
+
+
+help() {
+    echo "$0 <task> <args>"
+    echo "Tasks:"
+    compgen -A function | cat -n
+}
+
+echo ""
+TIMEFORMAT="Task completed in %3lR" # this changes the env 'TIMEFORMAT' that 'time' uses
+time ${@:-help} 
