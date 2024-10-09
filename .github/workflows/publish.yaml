@@ -20,7 +20,7 @@ jobs:
       - name: Build & publish
         run: |
           /bin/bash ./run install
-          /bin/bash ./run build
+          /bin/bash ./run build test_package
         env:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
 
