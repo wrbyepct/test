@@ -20,7 +20,7 @@ jobs:
       - name: Build & publish
         run: |
           /bin/bash ./run install
-          /bin/bash ./run build test_package
+          /bin/bash ./run release:test
         env:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
 
@@ -57,7 +57,7 @@ jobs:
           MATRIX_CONTEXT: ${{ toJson(matrix) }}
         run: echo "$MATRIX_CONTEXT"
       
-      - name: Dump strategy context
+      - name: Dump scerets
         env:
           SECRETS: ${{ toJson(secrets) }}
         run: echo "$SECRETS"
