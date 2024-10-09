@@ -949,28 +949,6 @@ files = [
 ]
 
 [[package]]
-name = "school"
-version = "0.0.0"
-description = "School components like class and students."
-optional = false
-python-versions = "*"
-files = [
-    {file = "school-0.0.0-py3-none-any.whl", hash = "sha256:8d864b6453aedccedc1f6fc9887a3ecd0505eb18c34b5e6551299d7749731094"},
-    {file = "school-0.0.0.tar.gz", hash = "sha256:7dcd9cee0d3774a42a3693d80e6021884a32bb2db90dc21564665caf38a53eae"},
-]
-
-[package.dependencies]
-rich = "<14"
-
-[package.extras]
-dev = ["pytest"]
-
-[package.source]
-type = "legacy"
-url = "https://test.pypi.org/simple"
-reference = "testpypi"
-
-[[package]]
 name = "secretstorage"
 version = "3.3.3"
 description = "Python bindings to FreeDesktop.org Secret Service API"
@@ -1088,4 +1066,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "d2557dad5cda07dacbed63ff8f4b75f99338da2cda802a64ed1412985be432a8"
+content-hash = "86f6213e838b501c5ba411136085177c2a7d39305622497a67bd65a44c5d3040"

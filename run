@@ -66,6 +66,9 @@ load-dotenv() {
 
 }
 
+install() {
+   pip install --upgrade pip && pip install -r requirements.txt
+}
 
 help() {
     echo "$0 <task> <args>"
