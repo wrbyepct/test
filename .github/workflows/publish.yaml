@@ -19,6 +19,7 @@ jobs:
           python-version: 3.11
       - name: Build & publish
         run: |
+          /bin/bash ./run install
           /bin/bash ./run build
         env:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }}
