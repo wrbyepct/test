@@ -3,6 +3,8 @@ name: Build, Test, and Publish
 on: 
   pull_request:
     types: [opened, synchronize]
+    branches:
+      '*'
   push:
     branches:
       - main
@@ -12,7 +14,7 @@ jobs:
   check-version-tag:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/chekcout@v4 # By default it fetch minimal branch info
+      - uses: actions/checkout@v4 # By default it fetch minimal branch info
         with:
           fetch-depth: 0 # fetch all branches info 
       - name: Tag with the release version
@@ -20,9 +22,9 @@ jobs:
           git tag $(cat version.txt)
           
   lint:
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/chekcout@v4
+      - uses: actions/checkout@v4
       - name: Setup Python 3.11
         uses: actions/setup-python@v5
         with:
