@@ -68,6 +68,8 @@ jobs:
     runs-on: ubuntu-latest
     # If it's push from main branch
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    env:
+      DIRNAME: test_package
     steps:
       - uses: actions/checkout@v4
       - name: Setup Python 3.11
@@ -79,7 +81,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: wheel-and-sdist
-          path: ./test_package/dist
+          path: ./${DIRNAME}/dist
 
       - name: Install twine
         run: |
@@ -87,13 +89,13 @@ jobs:
 
       - name: Publish Test PyPI
         run: |
-          /bin/bash -x ./run publish:test
+          /bin/bash -x ./run publish:test ${DIRNAME}
         env:
           TEST_PYPI_TOKEN: ${{ secrets.TEST_PYPI_TOKEN }} 
           
       - name: Publish to Prod PyPI
         run: |
-          /bin/bash -x ./run publish:prod
+          /bin/bash -x ./run publish:prod ${DIRNAME}
         env:
           PROD_PYPI_TOKEN: ${{ secrets.PROD_PYPI_TOKEN }}
 
