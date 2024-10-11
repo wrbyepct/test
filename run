@@ -22,7 +22,6 @@ publish:prod() {
 
 release:test() {
     DIRNAME=test_package
-    lint
     clean ${DIRNAME}
     build ${DIRNAME}
     publish:test ${DIRNAME}

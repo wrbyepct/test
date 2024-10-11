@@ -1,9 +1,0 @@
-pyproject.toml
-school/__init__.py
-school/component.py
-school/staff.py
-school.egg-info/PKG-INFO
-school.egg-info/SOURCES.txt
-school.egg-info/dependency_links.txt
-school.egg-info/requires.txt
-school.egg-info/top_level.txt

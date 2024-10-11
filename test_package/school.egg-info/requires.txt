@@ -1,4 +1,0 @@
-rich<14
-
-[dev]
-pytest

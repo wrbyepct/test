@@ -7,3 +7,6 @@ main:
 precommit-install:
     poetry run pre-commit uninstall; poetry run pre-commit clean; \
     poetry run pre-commit install
+
+clean:
+    ./run clean test_package
