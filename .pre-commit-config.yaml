@@ -16,14 +16,14 @@ repos:
       args: [--style=google, --check-return-types=False]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.6.0
+    rev: v5.0.0
     hooks:
       - id: check-yaml # Validate YAML files
       - id: check-added-large-files # Check for giant files
       - id: check-toml
       - id: end-of-file-fixer
-      # - id: no-commit-to-branch
-      #   args: ["--branch=main"]
+      - id: no-commit-to-branch
+        args: ["--branch=main"]
       - id: detect-private-key
 
   - repo: https://github.com/commitizen-tools/commitizen
