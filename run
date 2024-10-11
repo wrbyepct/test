@@ -56,7 +56,7 @@ publish:test() {
     try-load-dotenv || true
 
     DIRNAME=${1:-.}
-    twine upload ${DIRNAME}/dist/* \
+    twine upload ./${DIRNAME}/dist/* \
         -r testpypi \
         --username=__token__ \
         --password="${TEST_PYPI_TOKEN}"
