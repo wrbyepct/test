@@ -22,7 +22,6 @@ publish:prod() {
 
 release:test() {
     DIRNAME=test_package
-    lint
     clean ${DIRNAME}
     build ${DIRNAME}
     publish:test ${DIRNAME}
@@ -30,12 +29,12 @@ release:test() {
 
 
 lint() {
-    git add .; pre-commit run --all-files
+    git add .; pre-commit run --all-files --show-diff-on-failure
 }
 
 
 lint:ci() {
-    SKIP=no-commit-to-branch pre-commit run --all-files
+    SKIP=no-commit-to-branch pre-commit run --all-files --show-diff-on-failure
 }
 
 

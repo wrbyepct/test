@@ -27,7 +27,7 @@ class AttackMixins:
 
     def iceball(self) -> int:
         """Return slash damage according to character's intelligence."""
-        return self.intelligence * 10
+        return self.intelligence * 19
 
 
 class Character(AttackMixins):

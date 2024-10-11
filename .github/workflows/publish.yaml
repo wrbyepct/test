@@ -37,7 +37,6 @@ jobs:
         run: |
           /bin/bash -x run lint:ci
 
-
   build-package:
     runs-on: ubuntu-latest
     steps:
