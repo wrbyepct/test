@@ -9,10 +9,10 @@ release:prod() {
 
 
 publish:prod() {
-    load-dotenv
+    try-load-dotenv || true
 
     DIRNAME=${1:-.}
-    twine upload ${DIRNAME}/dist/* \
+    twine upload ./${DIRNAME}/dist/* \
         -r pypi \
         --username=__token__ \
         --password="${PROD_PYPI_TOKEN}"
