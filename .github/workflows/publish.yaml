@@ -39,7 +39,6 @@ jobs:
         if: failure()
         run: git diff --color-words
 
-
   build-package:
     runs-on: ubuntu-latest
     steps:
