@@ -55,4 +55,3 @@ max-complexity = 8
 [build-system]
 requires = ["poetry-core", "setuptools>=61", "wheel"]
 build-backend = "poetry.core.masonry.api"
-
