@@ -35,9 +35,6 @@ jobs:
       - name: Lint
         run: |
           /bin/bash -x run lint:ci
-      - name: Show diff if pre-commit fails
-        if: failure()
-        run: git diff --color-words
 
   build-package:
     runs-on: ubuntu-latest
