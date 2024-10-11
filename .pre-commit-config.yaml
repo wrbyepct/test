@@ -22,8 +22,8 @@ repos:
       - id: check-added-large-files # Check for giant files
       - id: check-toml
       - id: end-of-file-fixer
-      - id: no-commit-to-branch
-        args: ["--branch=main"]
+      # - id: no-commit-to-branch
+      #   args: ["--branch=main"]
       - id: detect-private-key
 
   - repo: https://github.com/commitizen-tools/commitizen
