@@ -11,7 +11,7 @@ release:prod() {
 publish:prod() {
     try-load-dotenv || true
 
-    DIRNAME=${1:-.}
+    DIRNAME=${DIRNAME:-.}
     twine upload ./${DIRNAME}/dist/* \
         -r pypi \
         --username=__token__ \
@@ -21,7 +21,7 @@ publish:prod() {
 
 
 release:test() {
-    DIRNAME=test_package
+ 
     clean ${DIRNAME}
     build ${DIRNAME}
     publish:test ${DIRNAME}
@@ -40,14 +40,14 @@ lint:ci() {
 
 
 clean() {
-    DIRNAME=${1:-.}
+    DIRNAME=${DIRNAME:-.}
     rm -rf ${DIRNAME}/dist ${DIRNAME}/*.egg-info
  
 }
 
 
 build() {
-    DIRNAME=${1:-.}
+    DIRNAME=${DIRNAME:-.}
     python -m build ${DIRNAME}
 }
 
@@ -55,7 +55,7 @@ build() {
 publish:test() {
     try-load-dotenv || true
 
-    DIRNAME=${1:-.}
+    DIRNAME=${DIRNAME:-.}
     twine upload ./${DIRNAME}/dist/* \
         -r testpypi \
         --username=__token__ \
@@ -71,10 +71,23 @@ try-load-dotenv() {
     fi
 
     while read -r line; do
-      
         export "$line"
-    done < <(grep -v "^#" ./.env)
+    done < <(grep -v -e "^\s*#" -e "^\s*$" ./.env)
 
+}
+
+
+test:ci() {
+    INSTALL_PKG_DIR="$(python -c 'import school; print(school.__path__[0])')"
+
+    python -m pytest "./tests/" \
+    --cov "${INSTALL_PKG_DIR}" \
+    --cov-report html:test-reports \
+    --cov-report term
+}
+
+test-report-html() {
+    python -m http.server -d test-reports 
 }
 
 
@@ -89,6 +102,29 @@ help() {
     compgen -A function | cat -n
 }
 
+
+try-load-file() {
+    if [[ ! -f "$1"  ]]; then
+        echo "no ${1} file found." 
+        return 1
+    fi
+
+    local count=0
+    while true ; do
+        if ! read -r line; then
+            return 0
+        fi
+        echo "$line"
+        (( count++ ))
+        
+    done < <(awk '!/^\s*#/ && !/^\s*$/' "$1")
+
+    echo "${count} lines in total"
+
+}
+
+
+DIRNAME=my_package
 echo ""
 TIMEFORMAT="Task completed in %3lR" # this changes the env 'TIMEFORMAT' that 'time' uses
 time ${@:-help} 

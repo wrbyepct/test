@@ -9,4 +9,9 @@ precommit-install:
     poetry run pre-commit install
 
 clean:
-    ./run clean test_package
+    ./run clean
+build:
+    ./run build
+
+report:
+    ./run test-report-html

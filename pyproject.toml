@@ -12,13 +12,17 @@ license = "MIT"
 python = "^3.11"
 ruff = "^0.6.7"
 pre-commit = "^3.8.0"
-faker = "^30.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pydoclint = "^0.5.8"
 build = "^1.2.2"
 twine = "^5.1.1"
 rust-just = "^1.36.0"
+pytest = "^8.3.3"
+faker = "^30.3.0"
+pytest-sugar = "^1.0.0"
+pytest-cov = "^5.0.0"
+school = {path = "my_package/dist/school-0.0.6-py3-none-any.whl"}
 
 
 
@@ -32,6 +36,7 @@ priority = "explicit"
 style = "google"
 
 
+
 [tool.ruff.lint]
 select = ["ALL"]
 fixable = ["ALL"]
@@ -41,7 +46,11 @@ ignore = [
     "D203", # 1 blank line required before class docstring
     "D212", # Multi-line docstring summary should start at the first line
     "S311", # Standard pseudo-random generators are not suitable for cryptographic purposes
+    "INP001", # Check no __init__.py
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["ANN001", "ANN201", "S101"]
 
 
 [tool.ruff.lint.mccabe]
