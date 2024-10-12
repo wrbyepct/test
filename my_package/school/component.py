@@ -5,8 +5,6 @@ from __future__ import annotations
 
 from typing import Generic, Protocol, TypeVar
 
-from rich import print
-
 TStudent = TypeVar("TStudent", bound="Student")
 
 
@@ -42,11 +40,11 @@ class USStudent:
         self.last_name = last_name
 
     def speak(self) -> str:
-        """Return Taiwanese greeting."""
+        """Return English greeting."""
         return f"Hello! I'm {self.first_name} {self.last_name}. What's your name?"
 
-    def play(self) -> None:
-        print("US students play!")
+    def play(self) -> str:
+        return "US students play!"
 
 
 class Class(Generic[TStudent]):
@@ -55,8 +53,6 @@ class Class(Generic[TStudent]):
     def __init__(self, students: list[TStudent]) -> None:
         self.students = students
 
-    def roll_call(self) -> None:
+    def roll_call(self) -> dict:
         """Roll call student's id and call '.speak()'."""
-        for std in self.students:
-            print(std.id)
-            print(std.speak())
+        return {std.id: std.speak() for std in self.students}
