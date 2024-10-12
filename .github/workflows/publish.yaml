@@ -68,7 +68,6 @@ jobs:
           /bin/bash -x ./run build ${DIRNAME}
 
       - name: Upload package artifact
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
         uses: actions/upload-artifact@v4
         with:
           name: wheel-and-sdist
@@ -101,7 +100,7 @@ jobs:
         run: |
           /bin/bash ./run test:ci
 
-          
+
   publish:
     needs: 
       - check-version-tag
