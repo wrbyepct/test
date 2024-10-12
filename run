@@ -76,6 +76,9 @@ try-load-dotenv() {
 
 }
 
+install() {
+   pip install --upgrade pip && pip install -r requirements.txt
+}
 
 test:ci() {
     INSTALL_PKG_DIR="$(python -c 'import school; print(school.__path__[0])')"
